@@ -1,9 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-console.log("DATABASE_URL:", process.env.DATABASE_URL);
 
-const pool = require("./db"); // 🔥 conexión PostgreSQL
+const pool = require("./db"); // conexión PostgreSQL
 
 const app = express();
 app.use(cors());
@@ -39,6 +38,9 @@ app.get("/api/pokemon/:nombre", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Servidor corriendo en http://localhost:3000");
+// ✅ IMPORTANTE: usar el puerto de Render
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
